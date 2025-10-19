@@ -1,0 +1,375 @@
+/* ================================================= */
+/* VISTOSSO - STYLES.CSS FINAL (FUSIONADO Y OPTIMIZADO) */
+/* ================================================= */
+
+/* Colores de Vistosso - Minimalista Premium */
+:root {
+    --color-fondo: #FDFDFD; /* Blanco puro, ligeramente apagado */
+    --color-texto: #111111; /* Negro profundo */
+    --color-acento: #A52A2A; /* Marrón/Terracota suave (Acento cálido - Ajustado de fc0606) */
+    --color-gris-suave: #EAEAEA;
+    --card-width: 300px;
+    --card-height: 400px;
+    --perspective-value: 1000px; /* Clave para el efecto 3D */
+}
+
+/* -------------------- */
+/* Estilos Generales y Tipografía */
+/* -------------------- */
+body {
+    /* Fuente Lato para el cuerpo (Limpia y moderna) */
+    font-family: 'Lato', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+header {
+    background-color: var(--color-texto);
+    color: var(--color-fondo);
+    padding: 1.5em 0;
+    border-bottom: 5px solid var(--color-acento);
+}
+
+/* -------------------- */
+/* ANIMACIÓN DE LOGO (SUTIL) */
+/* -------------------- */
+@keyframes subtle-pulse {
+    0%, 100% {
+        color: var(--color-fondo);
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0);
+    }
+    50% {
+        color: var(--color-acento);
+        text-shadow: 0 0 8px var(--color-acento);
+    }
+}
+
+.logo {
+    font-family: 'Cormorant Garamond', serif; 
+    letter-spacing: 10px;
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-size: 2.5em;
+    animation: subtle-pulse 5s infinite ease-in-out; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+nav a {
+    color: var(--color-gris-suave);
+    text-decoration: none;
+    padding: 0 25px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: var(--color-acento);
+}
+
+main {
+    max-width: 1280px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* -------------------- */
+/* HERO SECTION (FONDO ANIMADO, BLUR Y ANIMACIÓN DE ENTRADA) */
+/* -------------------- */
+
+/* Animación de Fondo (para el pseudo-elemento) */
+@keyframes glowMove {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
+    100% { transform: scale(1.3) translate(50px, -50px); opacity: 0.9; }
+}
+/* Animación de Capa Flotante (wave-bg) */
+@keyframes waveMove {
+    0% { transform: translate(0px, 0px) scale(1); }
+    50% { transform: translate(-60px, 40px) scale(1.2); }
+    100% { transform: translate(60px, -40px) scale(1); }
+}
+/* Animación de entrada de contenido */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    60% {
+        opacity: 0.7;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-section {
+    position: relative;
+    height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Fondo oscuro animado */
+    background: radial-gradient(circle at 50% 50%, #0d0d0d 30%, #000 100%);
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Sutil efecto de resplandor moviéndose */
+    background: radial-gradient(circle at 70% 50%, rgba(165, 42, 42, 0.5), transparent 70%),
+                radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.05), transparent 80%);
+    mix-blend-mode: screen;
+    animation: glowMove 12s ease-in-out infinite alternate;
+}
+
+.wave-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 20% 40%, rgba(165,42,42,0.5), transparent 70%),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.2), transparent 80%),
+        radial-gradient(circle at 40% 80%, rgba(165,42,42,0.3), transparent 70%);
+    filter: blur(90px);
+    animation: waveMove 20s ease-in-out infinite alternate;
+    z-index: 0;
+    opacity: 0.9;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2;
+    /* Efecto Glassmorphism / Cristal */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+    padding: 60px 80px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1.8s ease-out forwards;
+}
+
+/* TÍTULO Y SUBTÍTULO (Aseguramos color blanco para el fondo oscuro) */
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 4.2em; /* Ligeramente ajustado para el diseño */
+    color: #fff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 25px rgba(165, 42, 42, 0.6); /* Sombra de resplandor */
+}
+
+.hero-subtitle {
+    font-family: 'Lato', sans-serif; 
+    font-weight: 300;
+    font-size: 1.3em; /* Ligeramente ajustado para el diseño */
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-subtitle em {
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(165, 42, 42, 0.4);
+}
+
+/* Botón de llamada a la acción (CTA) */
+.hero-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 15px 50px;
+    background: linear-gradient(90deg, var(--color-acento), #7a1f1f);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 40px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 25px rgba(165, 42, 42, 0.4);
+}
+
+.hero-button:hover {
+    /* Efecto al pasar el mouse para un look más vibrante */
+    background: linear-gradient(90deg, #fff, var(--color-acento));
+    color: var(--color-texto);
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+
+/* -------------------- */
+/* CATÁLOGO Y CSS GRID */
+/* -------------------- */
+.section-title {
+    font-family: 'Cormorant Garamond', serif; 
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--color-texto);
+}
+
+/* -------------------- */
+/* CATÁLOGO Y CSS GRID (MODIFICADO para 4 en fila) */
+/* -------------------- */
+.product-grid {
+    display: grid;
+    /* Por defecto, sigue siendo flexible, pero forzaremos 4 en pantallas grandes */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Minimizamos el minmax ligeramente */
+    gap: 25px; /* Reducimos el espacio un poco para que quepan 4 */
+    justify-items: center;
+    padding: 0 10px;
+}
+
+/* @MEDIA QUERY CLAVE: Fuerza 4 columnas iguales en monitores grandes (1200px o más) */
+@media (min-width: 1200px) {
+    .product-grid {
+        /* Fuerza exactamente 4 columnas de igual ancho (1fr) */
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 30px; /* Restauramos un buen espacio entre ellas */
+    }
+}
+
+/* ---------------------------------------------------- */
+/* TARJETA 3D FLIP */
+/* ---------------------------------------------------- */
+
+.card-container {
+    width: var(--card-width);
+    height: var(--card-height);
+    perspective: var(--perspective-value); 
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card-container:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 1px solid var(--color-gris-suave);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-front {
+    background-color: var(--color-fondo);
+}
+
+.card-front img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    border-bottom: 1px solid var(--color-gris-suave);
+}
+
+.product-info {
+    padding: 10px 15px;
+}
+.product-info h3 { 
+    margin: 5px 0; 
+    font-size: 1.3em; 
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+}
+.price { 
+    color: var(--color-acento); 
+    font-weight: bold; 
+    margin: 5px 0; 
+}
+.hint { 
+    font-size: 0.8em; 
+    color: #888; 
+}
+
+.card-back {
+    background-color: var(--color-fondo);
+    transform: rotateY(180deg);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-content {
+    text-align: left;
+}
+
+.back-content h4 {
+    color: var(--color-acento);
+    font-size: 1.5em;
+    margin-top: 0;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.back-content ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9em;
+    margin: 15px 0;
+}
+
+/* Botón de COMPRA */
+.btn-buy {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-acento);
+    color: var(--color-fondo);
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.btn-buy:hover {
+    background-color: var(--color-texto);
+}
+
+.btn-buy i {
+    margin-right: 8px;
+}
+
+/* -------------------- */
+/* Pie de página */
+/* -------------------- */
+footer {
+    background-color: var(--color-texto);
+    color: var(--color-gris-suave);
+    text-align: center;
+    padding: 1.5em 0;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
